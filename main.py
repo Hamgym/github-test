@@ -1,6 +1,6 @@
-# Don’t push code including your daily password
 from dotenv import load_dotenv
 load_dotenv()
+
 import os
 import mysql.connector
 mydb = mysql.connector.connect(
@@ -14,7 +14,6 @@ cursor = mydb.cursor()
 from fastapi import FastAPI, Request, Form, Body
 app = FastAPI()
 
-# Don’t push code including your daily password
 from starlette.middleware.sessions import SessionMiddleware
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
 
