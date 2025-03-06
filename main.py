@@ -3,13 +3,13 @@ load_dotenv()
 
 import os
 import mysql.connector
-mydb = mysql.connector.connect(
-    user = os.getenv("DB_USER"),
-    password = os.getenv("DB_PASSWORD"),
-    host = "localhost",
-    database = "website"
-)
-cursor = mydb.cursor()
+dbconfig = {
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "host": "localhost",
+    "database": "website"
+}
+cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_size=3, pool_name="mypool", **dbconfig)
 
 from fastapi import FastAPI, Request, Form, Body
 app = FastAPI()
@@ -34,13 +34,17 @@ async def home(request:Request):
 
 @app.post("/signup")
 async def signup(request:Request, name:str=Form(), username:str=Form(), password:str=Form()):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     cursor.execute("SELECT * FROM member WHERE username=%s", (username,))
     row = cursor.fetchone()
     if row != None:
+        cnx.close()
         return RedirectResponse("/error?message=使用者名稱重複", status_code=303)
     else:
         cursor.execute("INSERT INTO member(name, username, password) VALUES(%s, %s, %s)", (name, username, password))
-        mydb.commit()
+        cnx.commit()
+        cnx.close()
         return RedirectResponse("/", status_code=303)
 
 @app.get("/error", response_class=HTMLResponse)
@@ -51,6 +55,8 @@ async def error(request:Request, message:str):
 
 @app.post("/signin")
 async def signin(request:Request, username:str=Form(), password:str=Form()):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     cursor.execute("SELECT * FROM member WHERE username=%s AND password=%s", (username, password))
     row = cursor.fetchone()
     if row != None:
@@ -58,41 +64,54 @@ async def signin(request:Request, username:str=Form(), password:str=Form()):
         request.session["member_id"] = row[0]
         request.session["name"] = row[1]
         request.session["username"] = row[2]
+        cnx.close()
         return RedirectResponse("/member", status_code=303)
     else:
+        cnx.close()
         return RedirectResponse("/error?message=帳號或密碼輸入錯誤", status_code=303)
 
 @app.get("/member", response_class=HTMLResponse)
 async def member(request:Request):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     signed = request.session.get("SIGNED-IN", "FALSE")
     if signed == "TRUE":
         name = request.session.get("name", None)
         member_id = request.session.get("member_id", None)
         cursor.execute("SELECT member.name, message.content, member.id, message.id FROM member JOIN message ON member.id=message.member_id ORDER BY message.id")
         message = cursor.fetchall()
+        cnx.close()
         return templates.TemplateResponse(
             request=request, name="member.html", context={"member_id": member_id, "name": name, "message": message}
         )
     else:
+        cnx.close()
         return RedirectResponse("/")
 
 @app.post("/createMessage")
 async def createMessage(request:Request, message:str=Form()):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     member_id = request.session.get("member_id", None)
     cursor.execute("INSERT INTO message(member_id, content) VALUES(%s, %s)", (member_id, message))
-    mydb.commit()
+    cnx.commit()
+    cnx.close()
     return RedirectResponse("/member", status_code=303)
 
 @app.post("/deleteMessage")
 async def deleteMessage(request:Request, message_id:str=Form()):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     member_id = request.session.get("member_id", None)
     cursor.execute("SELECT * FROM message WHERE id=%s AND member_id=%s", (message_id, member_id))
     row = cursor.fetchone()
     if row:
         cursor.execute("DELETE FROM message WHERE id=%s", (message_id,))
-        mydb.commit()
+        cnx.commit()
+        cnx.close()
         return RedirectResponse("/member", status_code=303)
     else:
+        cnx.close()
         return RedirectResponse("/signout", status_code=303)
 
 @app.get("/signout")
@@ -103,6 +122,8 @@ async def signout(request:Request):
 
 @app.get("/api/member")
 async def get_member(request:Request, username:str):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     result = {"data": None}
     row = None
     signed = request.session.get("SIGNED-IN", "FALSE")
@@ -115,20 +136,26 @@ async def get_member(request:Request, username:str):
             "name": row[1],
             "username": row[2]
         }
+    cnx.close()
     return result
 
 @app.patch("/api/member")
 async def patch_member(request:Request, body=Body()):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
     signed = request.session.get("SIGNED-IN", "FALSE")
     if signed == "TRUE":
         try:
             member_id = request.session.get("member_id", None)
             cursor.execute("UPDATE member SET name=%s WHERE id=%s", (body["name"], member_id))
-            mydb.commit()
+            cnx.commit()
         except:
+            cnx.close()
             return {"error": True}
         else:
             request.session["name"] = body["name"]
+            cnx.close()
             return {"ok": True}
     else:
+        cnx.close()
         return {"error": True}
