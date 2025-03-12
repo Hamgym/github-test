@@ -37,7 +37,8 @@ cursor = mydb.cursor()
 
 for item in data:
   cursor.execute(
-    "INSERT INTO data VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (item["id"], item["name"], item["category"], item["description"], item["address"], item["transport"], item["mrt"], item["lat"], item["lng"], json.dumps(item["images"]))
+    "INSERT INTO data VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+    (item["id"], item["name"], item["category"], item["description"], item["address"], item["transport"], item["mrt"], item["lat"], item["lng"], json.dumps(item["images"]))
   )
 mydb.commit()
 mydb.close()
