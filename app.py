@@ -22,10 +22,10 @@ load_dotenv()
 import os
 from mysql.connector.pooling import MySQLConnectionPool
 dbconfig = {
-    "user": os.getenv("DB_USER"),
-    "password": os.getenv("DB_PASSWORD"),
-    "host": "localhost",
-    "database": "attractions"
+	"user": os.getenv("DB_USER"),
+	"password": os.getenv("DB_PASSWORD"),
+	"host": "localhost",
+	"database": "attractions"
 }
 cnxpool = MySQLConnectionPool(pool_size=5, **dbconfig)
 
@@ -34,16 +34,14 @@ from fastapi.responses import JSONResponse
 from mysql.connector.errors import PoolError
 @app.exception_handler(PoolError)
 async def pool_error(request:Request, exc:PoolError):
-    return JSONResponse({"error":True, "message":"資料庫忙碌中"}, 500)
+	return JSONResponse({"error":True,"message":"資料庫忙線中"}, 500)
 
 
 import json
 @app.get("/api/attractions")
 async def get_attractions(page:int=Query(ge=0), keyword:str=Query(None)):
 	cnx = cnxpool.get_connection()
-	# raise PoolError
 	cursor = cnx.cursor()
-
 	limit = 12
 	offset = page * limit
 	if keyword == None:
@@ -73,22 +71,19 @@ async def get_attractions(page:int=Query(ge=0), keyword:str=Query(None)):
 		tmp["images"] = json.loads(record[9])
 		data.append(tmp.copy())
 		tmp.clear()
-		# break
 
 	cnx.close()
 	return {"nextPage": next_page, "data": data}
 
-@app.get("/api/attractions/{attractionId}")
-async def get_attractions_by_id(attractionId: int):
+@app.get("/api/attraction/{attractionId}")
+async def get_attraction_by_id(attractionId: int):
 	cnx = cnxpool.get_connection()
-	# raise PoolError
 	cursor = cnx.cursor()
 	cursor.execute("SELECT * FROM data WHERE id=%s", (attractionId,))
 	record = cursor.fetchone()
-	# print(record)
 	if record == None:
 		cnx.close()
-		return JSONResponse({"error": True, "message": "景點編號不正確"}, 400)
+		return JSONResponse({"error":True,"message":"景點編號不正確"}, 400)
 	else:
 		data = {}
 		data["id"] = record[0]
@@ -110,7 +105,6 @@ async def get_mrts():
 	cursor = cnx.cursor()
 	cursor.execute("SELECT mrt FROM data WHERE mrt IS NOT NULL GROUP BY mrt ORDER BY COUNT(name) DESC")
 	records = cursor.fetchall()
-	# print(records)
 	data = []
 	for record in records:
 		data.append(record[0])
