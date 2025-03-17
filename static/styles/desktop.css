@@ -1,0 +1,135 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	color: #666666;
+	font-size: 16px;
+	font-family: "Noto Sans TC", sans-serif;
+	font-optical-sizing: auto;
+}
+
+body {
+	background-color: aqua;
+}
+
+.navigation {
+	background-color: #FFFFFF;
+	height: 54px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navigation>div {
+	/* background-color: aquamarine; */
+	width: 1200px;
+	height: 34px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.navigation h2 {
+	width: 150px;
+	margin: 0 10px;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 34px;
+	color: #448899;
+}
+
+.navigation .container {
+	/* background-color: aqua; */
+	width: 175px;
+	margin: 0 10px;
+	display: flex;
+}
+
+.navigation a:first-child {
+	width: 84px;
+	padding: 10px;
+	line-height: 12px;
+	font-weight: 500;
+	color: #666666;
+}
+
+.navigation a:last-child {
+	width: 91px;
+	padding: 10px;
+	line-height: 12px;
+	font-weight: 500;
+	font-size: 16px;
+	color: #666666;
+}
+
+.hero-section {
+	height: 320px;
+	background-image: url(../images/welcome.svg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 75px;
+	/* padding-bottom: 76px; */
+}
+
+.slogan {
+	/* background-color: rgba(255, 255, 255, 0.5); */
+	width: 1200px;
+	height: 169px;
+	margin: auto;
+	padding: 10px;
+}
+
+.slogan>div:first-child {
+	/* background-color: antiquewhite; */
+	height: 78px;
+	margin-bottom: 25px;
+}
+
+.slogan h1 {
+	height: 41px;
+	font-weight: 580;
+	font-size: 28px;
+	line-height: 40px;
+	color: #F8F8F8;
+	text-shadow: 0 0 30px #AABBCC;
+	margin-bottom: 15px;
+}
+
+.slogan p {
+	height: 22px;
+	line-height: 22px;
+	font-weight: 580;
+	color: #F8F8F8;
+}
+
+.slogan>div:last-child {
+	/* background-color: antiquewhite; */
+	height: 46px;
+}
+
+.slogan form {
+	display: flex;
+	width: 460px;
+	height: 46px;
+	box-shadow: 0 0 20px #AABBCC;
+}
+
+.slogan input {
+	width: 400px;
+	padding: 15px;
+	border: none;
+	border-radius: 5px 0 0 5px;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 700;
+}
+
+.slogan button {
+	width: 60px;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	padding: 8px 15px;
+	background-image: url(../images/btn.svg);
+}
