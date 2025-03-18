@@ -15,12 +15,30 @@
 </head>
 
 <body>
+  <div class="mask"></div>
+  <div class="signin-dialog">
+    <div class="decorator-bar"></div>
+    <div class="close">
+      <img src="./images/icon_close.svg" alt="">
+    </div>
+    <div class="signin-main">
+      <h3>登入會員帳號</h3>
+      <form action="" method="post">
+        <input type="text" name="email" placeholder="輸入電子信箱">
+        <input type="text" name="password" placeholder="輸入密碼">
+        <input type="button" value="登入帳戶">
+        <div class="signup">還沒有帳戶？點此註冊</div>
+      </form>
+    </div>
+  </div>
   <div class="navigation">
     <div>
       <h2>台北一日遊</h2>
       <div class="container">
         <a href="">預定行程</a>
-        <a href="">登入/註冊</a>
+        <!-- <a href="">登入/註冊</a> -->
+        <!-- <button>登入/註冊</button> -->
+        <div class="signin">登入/註冊</div>
       </div>
     </div>
   </div>
@@ -32,7 +50,7 @@
       </div>
       <div>
         <form action="" method="get">
-          <input type="text" name="" id="" placeholder="輸入景點名稱查詢">
+          <input type="text" name="" placeholder="輸入景點名稱查詢">
           <button></button>
         </form>
       </div>

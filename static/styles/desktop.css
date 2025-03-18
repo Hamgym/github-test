@@ -26,6 +26,95 @@ body {
 	position: relative;
 }
 
+.mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: 25%;
+	z-index: 20;
+	display: none;
+}
+
+.signin-dialog {
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	position: fixed;
+	top: 80px;
+	/* left: 790px; */
+	left: calc(50% - 340px / 2);
+	width: 340px;
+	height: 275px;
+	z-index: 30;
+	display: none;
+}
+
+.signin-dialog .decorator-bar {
+	background-image: linear-gradient(to left, #337788, #66AABB);
+	border-radius: 5px 5px 0 0;
+	width: 100%;
+	height: 10px;
+}
+
+.signin-dialog .close {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 20px;
+	left: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 40;
+}
+
+.signin-dialog .signin-main {
+	/* background-color: beige; */
+	width: 310px;
+	height: 234px;
+	position: relative;
+	top: 15px;
+	left: 15px;
+}
+
+.signin-main h3 {
+	font-size: 24px;
+	height: 27px;
+	line-height: 24px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.signin-main form {
+	/* background-color: aqua; */
+	height: 192px;
+}
+
+.signin-main input {
+	width: 100%;
+	height: 47px;
+	border-radius: 5px;
+	border: 1px solid #CCCCCC;
+	padding: 15px;
+	margin-bottom: 10px;
+}
+
+.signin-main input[type="button"] {
+	background-color: #448899;
+	color: #FFFFFF;
+	font-size: 19px;
+	line-height: 16px;
+	border: none;
+}
+
+.signin-main .signup {
+	height: 22px;
+	text-align: center;
+	line-height: 22px;
+}
+
 .navigation {
 	background-color: #FFFFFF;
 	height: 54px;
@@ -61,20 +150,17 @@ body {
 	display: flex;
 }
 
-.navigation a:first-child {
+.navigation a {
 	width: 84px;
 	padding: 10px;
 	line-height: 12px;
-	/* font-weight: 500; */
 	color: #666666;
 }
 
-.navigation a:last-child {
+.navigation .signin {
 	width: 91px;
 	padding: 10px;
 	line-height: 12px;
-	/* font-weight: 500; */
-	font-size: 16px;
 	color: #666666;
 }
 
@@ -315,13 +401,14 @@ body {
 	height: 104px;
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
+	align-items: center;
 }
 
 .footer p {
 	color: #FFFFFF;
 	font-weight: 600;
-	line-height: 102px;
+	line-height: 38px;
 	/* width: 234px; */
-	letter-spacing: 0.1px;
+	height: 40px;
+	letter-spacing: 0.16px;
 }
