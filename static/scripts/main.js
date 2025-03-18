@@ -1,7 +1,5 @@
 let list = document.querySelector(".list-item");
-// console.log(list)
 let leftBtn = document.querySelector("button.left");
-// console.log(leftBtn);
 leftBtn.addEventListener("click", function () {
 	list.scrollBy({ left: -100, behavior: "smooth" });
 });
@@ -10,25 +8,38 @@ rightBtn.addEventListener("click", function () {
 	list.scrollBy({ left: 100, behavior: "smooth" });
 });
 
-let signinBtn = document.querySelector("div.signin");
-// console.log(loginBtn);
+
 let mask = document.querySelector("div.mask");
+let signLink = document.querySelector(".navigation div.sign");
+let signinLink = document.querySelector(".signup-main div.signin");
+let signupLink = document.querySelector(".signin-main div.signup");
 let signinDialog = document.querySelector("div.signin-dialog");
-// console.log(mask);
-signinBtn.addEventListener("click", function () {
+let signupDialog = document.querySelector("div.signup-dialog");
+signLink.addEventListener("click", function () {
 	mask.style.display = "block";
 	signinDialog.style.display = "block";
 });
+signinLink.addEventListener("click", function () {
+	signinDialog.style.display = "block";
+	signupDialog.style.display = "none";
+});
+signupLink.addEventListener("click", function () {
+	signinDialog.style.display = "none";
+	signupDialog.style.display = "block";
+});
+let closeBtns = document.querySelectorAll("div.close");
+for (let closeBtn of closeBtns) {
+	closeBtn.addEventListener("click", function () {
+		mask.style.display = "none";
+		signinDialog.style.display = "none";
+		signupDialog.style.display = "none";
+	});
+}
 window.addEventListener("keydown", function (ev) {
 	if (ev.key == "Escape") {
 		mask.style.display = "none";
 		signinDialog.style.display = "none";
+		signupDialog.style.display = "none";
 	}
 });
-let closeBtn = document.querySelector("div.close");
-// console.log(closeBtn);
-closeBtn.addEventListener("click", function () {
-	// console.log("HI");
-	mask.style.display = "none";
-	signinDialog.style.display = "none";
-});
+
