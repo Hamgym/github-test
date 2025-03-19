@@ -71,6 +71,10 @@ body {
 	z-index: 40;
 }
 
+.signin-dialog .close:hover {
+	cursor: pointer;
+}
+
 .signin-dialog .signin-main {
 	width: 310px;
 	height: 234px;
@@ -160,6 +164,10 @@ body {
 	justify-content: center;
 	align-items: center;
 	z-index: 40;
+}
+
+.signup-dialog .close:hover {
+	cursor: pointer;
 }
 
 .signup-dialog .signup-main {
@@ -342,6 +350,9 @@ body {
 	background-image: url(../images/btn.svg);
 }
 
+.slogan button:hover {
+	cursor: pointer;
+}
 
 .main {
 	padding: 40px 0;
@@ -373,6 +384,10 @@ body {
 	height: 32px;
 }
 
+.list-bar button.left:hover {
+	cursor: pointer;
+}
+
 .list-bar .middle-container {
 	/* background-color: beige; */
 	/* flex-grow: 1; */
@@ -392,15 +407,15 @@ body {
 }
 
 .list-bar .list-item div {
-	padding: 0 15px;
+	margin: 0 15px;
+	/* padding: 0 15px; */
 	height: 24px;
-	display: flex;
-	justify-content: center;
-}
-
-.list-bar a {
 	line-height: 22px;
 	text-wrap-mode: nowrap;
+}
+
+.list-bar .list-item div:hover {
+	cursor: pointer;
 }
 
 .list-bar .right-container {
@@ -419,6 +434,10 @@ body {
 	border: none;
 	width: 32px;
 	height: 32px;
+}
+
+.list-bar button.right:hover {
+	cursor: pointer;
 }
 
 .main .attractions {
@@ -479,6 +498,9 @@ body {
 	color: #FFFFFF;
 	line-height: 20px;
 	font-weight: 600;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .attraction .details {
