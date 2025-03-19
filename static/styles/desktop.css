@@ -107,16 +107,26 @@ body {
 	background-color: #448899;
 	color: #FFFFFF;
 	font-size: 19px;
-	font-weight: 340;
+	font-weight: 400;
 	height: 46px;
 	padding-top: 2px;
 	border: none;
+}
+
+.signin-main input[type="button"]:hover {
+	cursor: pointer;
 }
 
 .signin-main .signup {
 	height: 22px;
 	text-align: center;
 	line-height: 22px;
+	max-width: fit-content;
+	margin: auto;
+}
+
+.signin-main .signup:hover {
+	cursor: pointer;
 }
 
 
@@ -193,10 +203,20 @@ body {
 	border: none;
 }
 
+.signup-main input[type="button"]:hover {
+	cursor: pointer;
+}
+
 .signup-main .signin {
 	height: 22px;
 	text-align: center;
 	line-height: 22px;
+	max-width: fit-content;
+	margin: auto;
+}
+
+.signup-main .signin:hover {
+	cursor: pointer;
 }
 
 
@@ -212,16 +232,15 @@ body {
 }
 
 .navigation>div {
-	/* background-color: aquamarine; */
 	width: 1200px;
 	height: 34px;
 	display: flex;
 	justify-content: space-between;
+	padding: 0 10px;
 }
 
 .navigation h2 {
 	width: 150px;
-	margin: 0 10px;
 	font-weight: 700;
 	font-size: 30px;
 	line-height: 34px;
@@ -229,9 +248,7 @@ body {
 }
 
 .navigation .container {
-	/* background-color: aqua; */
 	width: 175px;
-	margin: 0 10px;
 	display: flex;
 }
 
@@ -249,6 +266,10 @@ body {
 	color: #666666;
 }
 
+.navigation .sign:hover {
+	cursor: pointer;
+}
+
 
 .hero-section {
 	height: 320px;
@@ -260,14 +281,13 @@ body {
 }
 
 .slogan {
-	width: 1220px;
+	max-width: 1220px;
 	height: 169px;
 	margin: auto;
 	padding: 10px 20px;
 }
 
 .slogan>div:first-child {
-	/* background-color: antiquewhite; */
 	height: 78px;
 	margin-bottom: 25px;
 }
@@ -290,25 +310,28 @@ body {
 }
 
 .slogan>div:last-child {
-	/* background-color: antiquewhite; */
 	height: 46px;
 }
 
 .slogan form {
 	display: flex;
-	width: 460px;
+	max-width: 460px;
 	height: 46px;
 	box-shadow: 0 0 20px #AABBCC;
 }
 
 .slogan input {
-	width: 400px;
+	width: 0;
 	padding: 15px;
 	border: none;
 	border-radius: 5px 0 0 5px;
-	/* font-family: inherit; */
-	/* font-size: inherit; */
 	font-weight: 700;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+.slogan input:focus-visible {
+	outline: none;
 }
 
 .slogan button {
@@ -339,6 +362,7 @@ body {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	flex-shrink: 0;
 }
 
 .list-bar button.left {
@@ -386,6 +410,7 @@ body {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	flex-shrink: 0;
 }
 
 .list-bar button.right {
@@ -398,23 +423,18 @@ body {
 
 .main .attractions {
 	background-color: white;
-	width: 1200px;
-	/* height: 300px; */
+	max-width: 1200px;
 	margin: auto;
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
 }
 
 .attractions .attraction {
-	/* background-color: transparent; */
 	width: 270px;
 	height: 242px;
 	margin: 15px;
-	/* outline: 1px solid #E8E8E8; */
-	/* outline-offset: -1px; */
-	/* border-radius: 5px; */
 	position: relative;
-	/* z-index: 0; */
 }
 
 .attractions .attraction::after {
@@ -428,20 +448,14 @@ body {
 	border-radius: 5px;
 	pointer-events: none;
 	/* 避免影響點擊 */
-
 }
 
 .attraction .container {
-	/* background-color: aqua; */
 	width: 100%;
-	height: 197px;
+	/* height: 197px; */
+	height: calc(100% - 45px);
 	position: relative;
-	/* top: -5px; */
-	/* left: -5px; */
-	/* z-index: -1; */
-	/* border: 1px solid #E8E8E8; */
 	border-radius: 5px 5px 0 0;
-	/* display: flex; */
 }
 
 .attraction img {
@@ -461,14 +475,13 @@ body {
 	height: 40px;
 	position: absolute;
 	bottom: 0;
-	/* border-radius: 0 0 0 0; */
 	padding: 10px;
 	color: #FFFFFF;
 	line-height: 20px;
+	font-weight: 600;
 }
 
 .attraction .details {
-	/* background-color: blueviolet; */
 	height: 45px;
 	border-radius: 0 0 5px 5px;
 	padding: 10px;

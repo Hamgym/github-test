@@ -1,11 +1,11 @@
 let list = document.querySelector(".list-item");
 let leftBtn = document.querySelector("button.left");
 leftBtn.addEventListener("click", function () {
-	list.scrollBy({ left: -100, behavior: "smooth" });
+	list.scrollBy({ left: -180, behavior: "smooth" });
 });
 let rightBtn = document.querySelector("button.right");
 rightBtn.addEventListener("click", function () {
-	list.scrollBy({ left: 100, behavior: "smooth" });
+	list.scrollBy({ left: 180, behavior: "smooth" });
 });
 
 
