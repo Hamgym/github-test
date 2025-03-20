@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	scrollbar-width: none;
 	color: inherit;
 	font-size: inherit;
 	font-weight: inherit;
@@ -13,19 +14,15 @@
 html {
 	color: #666666;
 	font-size: 16px;
-	font-weight: 480;
+	font-weight: 500;
 	font-family: "Noto Sans TC", sans-serif;
 	font-optical-sizing: auto;
+	line-height: 1;
 }
 
 body {
 	position: relative;
 }
-
-::-webkit-scrollbar {
-	display: none;
-}
-
 
 .mask {
 	position: fixed;
@@ -38,6 +35,8 @@ body {
 	z-index: 20;
 	display: none;
 }
+
+
 
 .signin-dialog {
 	background-color: #FFFFFF;
@@ -65,9 +64,9 @@ body {
 	position: absolute;
 	top: 20px;
 	left: 300px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background-image: url(../images/icon_close.svg);
+	background-repeat: no-repeat;
+	background-position: center;
 	z-index: 40;
 }
 
@@ -100,7 +99,6 @@ body {
 .signin-main input {
 	width: 100%;
 	height: 47px;
-	line-height: 16px;
 	border-radius: 5px;
 	border: 1px solid #CCCCCC;
 	padding: 0px 14px 2px 14px;
@@ -123,8 +121,8 @@ body {
 
 .signin-main .signup {
 	height: 22px;
-	text-align: center;
 	line-height: 22px;
+	text-align: center;
 	max-width: fit-content;
 	margin: auto;
 }
@@ -132,6 +130,7 @@ body {
 .signin-main .signup:hover {
 	cursor: pointer;
 }
+
 
 
 .signup-dialog {
@@ -160,9 +159,9 @@ body {
 	position: absolute;
 	top: 20px;
 	left: 300px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background-image: url(../images/icon_close.svg);
+	background-repeat: no-repeat;
+	background-position: center;
 	z-index: 40;
 }
 
@@ -194,7 +193,6 @@ body {
 .signup-main input {
 	width: 100%;
 	height: 47px;
-	line-height: 16px;
 	border-radius: 5px;
 	border: 1px solid #CCCCCC;
 	padding: 0px 14px 2px 14px;
@@ -217,8 +215,8 @@ body {
 
 .signup-main .signin {
 	height: 22px;
-	text-align: center;
 	line-height: 22px;
+	text-align: center;
 	max-width: fit-content;
 	margin: auto;
 }
@@ -226,6 +224,7 @@ body {
 .signup-main .signin:hover {
 	cursor: pointer;
 }
+
 
 
 .navigation {
@@ -255,6 +254,10 @@ body {
 	color: #448899;
 }
 
+.navigation h2:hover {
+	cursor: pointer;
+}
+
 .navigation .container {
 	width: 175px;
 	display: flex;
@@ -277,6 +280,7 @@ body {
 .navigation .sign:hover {
 	cursor: pointer;
 }
+
 
 
 .hero-section {
@@ -354,6 +358,8 @@ body {
 	cursor: pointer;
 }
 
+
+
 .main {
 	padding: 40px 0;
 }
@@ -408,7 +414,6 @@ body {
 
 .list-bar .list-item div {
 	margin: 0 15px;
-	/* padding: 0 15px; */
 	height: 24px;
 	line-height: 22px;
 	text-wrap-mode: nowrap;
@@ -465,13 +470,10 @@ body {
 	bottom: 0;
 	border: 1px solid #E8E8E8;
 	border-radius: 5px;
-	pointer-events: none;
-	/* 避免影響點擊 */
 }
 
 .attraction .container {
 	width: 100%;
-	/* height: 197px; */
 	height: calc(100% - 45px);
 	position: relative;
 	border-radius: 5px 5px 0 0;
@@ -515,6 +517,7 @@ body {
 	line-height: 24px;
 	color: #757575;
 }
+
 
 
 .footer {

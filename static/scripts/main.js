@@ -1,11 +1,17 @@
+let title = document.querySelector(".navigation h2");
+title.addEventListener("click", function () {
+	window.location.href = "/";
+});
+
+
 let list = document.querySelector(".list-item");
 let leftBtn = document.querySelector("button.left");
 leftBtn.addEventListener("click", function () {
-	list.scrollBy({ left: -180, behavior: "smooth" });
+	list.scrollBy({ left: -200, behavior: "smooth" });
 });
 let rightBtn = document.querySelector("button.right");
 rightBtn.addEventListener("click", function () {
-	list.scrollBy({ left: 180, behavior: "smooth" });
+	list.scrollBy({ left: 200, behavior: "smooth" });
 });
 
 
@@ -46,6 +52,7 @@ window.addEventListener("keydown", function (ev) {
 
 let nextPage = 0;
 let keyword = "";
+init();
 async function init() {
 	let res = await fetch("./api/mrts");
 	let data_raw = await res.json();
@@ -68,7 +75,7 @@ async function init() {
 	}
 	nextPage = await loadOne(nextPage, keyword);
 }
-init();
+
 const intersectionObserver = new IntersectionObserver(async (entries) => {
 	if (entries[0].intersectionRatio <= 0 || nextPage == null || nextPage == 0) {
 		return;
