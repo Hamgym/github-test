@@ -75,15 +75,6 @@ async function init() {
 	}
 	nextPage = await loadOne(nextPage, keyword);
 }
-
-const intersectionObserver = new IntersectionObserver(async (entries) => {
-	if (entries[0].intersectionRatio <= 0 || nextPage == null || nextPage == 0) {
-		return;
-	}
-	nextPage = await loadOne(nextPage, keyword);
-});
-intersectionObserver.observe(document.querySelector("div.footer"));
-
 async function loadOne(page, keyword) {
 	let res = await fetch(`./api/attractions?page=${page}&keyword=${keyword}`);
 	let data_raw = await res.json();
@@ -104,43 +95,24 @@ async function loadOne(page, keyword) {
 		mrt.innerText = data.mrt;
 		attractions.appendChild(attraction);
 	}
-	// if (nextPage == null) {
-	// 	let length = attractions.children.length;
-	// 	// console.log(length);
-	// 	let total = length - 1;
-	// 	// console.log(innerWidth);
-	// 	let container_col;
-	// 	if (innerWidth > 1200) {
-	// 		container_col = 4
-	// 	}
-	// 	if (innerWidth <= 1200 && innerWidth > 1000) {
-	// 		container_col = 3
-	// 	}
-	// 	if (innerWidth <= 1000 && innerWidth > 600) {
-	// 		container_col = 2
-	// 	}
-	// 	if (innerWidth <= 600) {
-	// 		container_col = 1
-	// 	}
-	// 	let rest_col = total % container_col;
-	// 	// console.log(rest);
-
-	// 	if (total > container_col && rest_col != 0) {
-	// 		let lastChild = attractions.children[length - 1];
-	// 		console.log(lastChild);
-	// 		let width = lastChild.clientWidth + 30;
-	// 		// console.log(width);
-	// 		lastChild.setAttribute("style", `margin-right: calc(${(container_col - rest_col) * width}px + 15px)`);
-	// 	}
-	// }
 	return nextPage
 }
+
+
+const intersectionObserver = new IntersectionObserver(async (entries) => {
+	if (entries[0].intersectionRatio <= 0 || nextPage == null || nextPage == 0) {
+		return;
+	}
+	nextPage = await loadOne(nextPage, keyword);
+});
+intersectionObserver.observe(document.querySelector("div.footer"));
+
 
 let searchBtn = document.querySelector(".slogan button");
 let searchField = document.querySelector(".slogan input");
 searchBtn.addEventListener("click", async function () {
-	keyword = searchField.value;
 	nextPage = 0;
+	keyword = searchField.value;
 	let attractions = document.querySelector("div.attractions");
 	while (attractions.children.length > 1) {
 		attractions.removeChild(attractions.lastElementChild);
