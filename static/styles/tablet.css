@@ -3,7 +3,7 @@
 	height: 280px;
 }
 
-@media screen and (width < 1000px) {
+@media screen and (width <=1000px) {
 	.attractions .attraction {
 		width: calc(100% / 2 - 30px - 30px / 2);
 	}

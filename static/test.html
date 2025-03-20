@@ -6,32 +6,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<style>
-		div.container {
+		.container {
 			background-color: aqua;
 			/* width: 500px; */
-			max-width: 1000px;
-			height: 500px;
+			width: 500px;
+			/* height: 1000px; */
 			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
 		}
 
 		div.child {
 			background-color: blue;
 			border: 2px solid;
-			max-width: 200px;
+			width: 200px;
 			height: 200px;
-		}
-
-		div.one {
-			flex-shrink: 0;
-			flex-grow: 1;
-		}
-
-		div.two {
-			flex-grow: 2;
+			margin: 10px
 		}
 
 		div.three {
-			flex-grow: 2;
+			margin-left: auto;
 		}
 	</style>
 </head>
@@ -42,6 +36,11 @@
 		<div class="child two"></div>
 		<div class="child three"></div>
 	</div>
+	<script>
+		if (1 < 11 < 10) {
+			console.log("OK");
+		}
+	</script>
 </body>
 
 </html>
